@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 import 'home_screen.dart';
+import 'create_acount.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -17,33 +17,49 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   Future<void> _signIn() async {
-    User? user = await _authService.signInWithEmailAndPassword(
-      _emailController.text,
-      _passwordController.text,
-    );
-    if (user != null) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+    try {
+      User? user = await _authService.signInWithEmailAndPassword(
+        _emailController.text,
+        _passwordController.text,
       );
-    } else {
-      print("Error al iniciar sesión");
+      if (user != null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+      } else {
+        _showErrorDialog("Error al iniciar sesión. Verifica tus credenciales.");
+      }
+    } catch (e) {
+      _showErrorDialog("Error al iniciar sesión: ${e.toString()}");
     }
   }
 
-  Future<void> _signUp() async {
-    User? user = await _authService.createUserWithEmailAndPassword(
-      _emailController.text,
-      _passwordController.text,
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Error"),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("Cerrar"),
+            ),
+          ],
+        );
+      },
     );
-    if (user != null) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
-    } else {
-      print("Error al crear usuario");
-    }
+  }
+
+  Future<void> _signUp() async {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => CreateAccountScreen()),
+    );
   }
 
   @override
@@ -56,7 +72,8 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             TextField(
               controller: _emailController,
-              decoration: const InputDecoration(labelText: 'Correo electrónico'),
+              decoration:
+                  const InputDecoration(labelText: 'Correo electrónico'),
             ),
             TextField(
               controller: _passwordController,
