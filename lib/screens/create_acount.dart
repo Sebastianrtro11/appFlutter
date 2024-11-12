@@ -70,22 +70,29 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           children: [
             TextField(
               controller: _emailController,
-              decoration: const InputDecoration(labelText: 'Correo electrónico'),
+              decoration: const InputDecoration(labelText: 'Correo electrónico', filled: true, fillColor: Colors.black12),
             ),
             TextField(
               controller: _passwordController,
-              decoration: const InputDecoration(labelText: 'Contraseña'),
+              decoration: const InputDecoration(labelText: 'Contraseña', filled: true, fillColor: Colors.black12),
               obscureText: true,
             ),
             TextField(
               controller: _confirmPasswordController,
-              decoration: const InputDecoration(labelText: 'Confirmar contraseña'),
+              decoration: const InputDecoration(labelText: 'Confirmar contraseña', filled: true, fillColor: Colors.black12),
               obscureText: true,
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _createAccount,
               child: const Text('Crear cuenta'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
             ),
           ],
         ),
