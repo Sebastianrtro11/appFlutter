@@ -48,8 +48,13 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Verificar Email"),
-      actions: [IconButton(onPressed: () => _goBack(context), icon: const Icon(Icons.arrow_back_ios))],
+      appBar: AppBar(
+        title: const Text("Verificar Email"),
+        actions: [
+          IconButton(
+              onPressed: () => _goBack(context),
+              icon: const Icon(Icons.arrow_back_ios))
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -69,10 +74,18 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
-                await widget.user.sendEmailVerification();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Correo de verificación reenviado")),
-                );
+                try {
+                  await widget.user.sendEmailVerification();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text("Correo de verificación reenviado")),
+                  );
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Error al enviar el correo")),
+                  );
+                  print("Error al enviar el email: ${e}");
+                }
               },
               child: const Text("Reenviar correo de verificación"),
             ),
