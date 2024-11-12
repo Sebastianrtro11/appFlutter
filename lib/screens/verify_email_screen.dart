@@ -1,3 +1,4 @@
+import 'package:app_richard/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../services/auth_service.dart';
@@ -37,10 +38,19 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     }
   }
 
+  Future<void> _goBack(BuildContext context) async {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Verificar Email")),
+      appBar: AppBar(title: const Text("Verificar Email"),
+      actions: [IconButton(onPressed: () => _goBack(context), icon: const Icon(Icons.arrow_back_ios))],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
