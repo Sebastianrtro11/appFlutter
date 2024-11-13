@@ -75,6 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
               decoration:
                   const InputDecoration(labelText: 'Correo electrónico', filled: true, fillColor: Colors.black12),
             ),
+            const SizedBox(height: 5),
             TextField(
               controller: _passwordController,
               decoration: const InputDecoration(labelText: 'Contraseña', filled: true, fillColor: Colors.black12),
@@ -92,7 +93,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _signUp,
               child: const Text('Registrarse'),
