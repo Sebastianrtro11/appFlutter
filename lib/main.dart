@@ -1,7 +1,10 @@
+// lib/main.dart
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import './utils/auth_wrapper.dart';
+import './utils/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,8 +19,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: AuthWrapper(),
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const AuthWrapper(),
+        ...AppRoutes.routes,
+      },
     );
   }
 }

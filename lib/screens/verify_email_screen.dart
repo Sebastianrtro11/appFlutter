@@ -18,12 +18,12 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
   @override
   void initState() {
     super.initState();
-    widget.user.sendEmailVerification(); // Enviar email de verificación
+    widget.user.sendEmailVerification();
     checkEmailVerified();
   }
 
   Future<void> checkEmailVerified() async {
-    await widget.user.reload(); // Recargar el estado del usuario
+    await widget.user.reload();
     setState(() {
       isEmailVerified = widget.user.emailVerified;
     });

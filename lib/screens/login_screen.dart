@@ -65,11 +65,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Iniciar sesión')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            SizedBox(height: 230.0, width: 250.0, child: Image.asset("assets/logo.jpg")),
             TextField(
               controller: _emailController,
               decoration:

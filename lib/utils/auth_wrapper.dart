@@ -1,11 +1,11 @@
+// lib/utils/auth_wrapper.dart
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../screens/login_screen.dart';
-import '../screens/home_screen.dart';
 import '../screens/verify_email_screen.dart';
+import '../utils/app_routes.dart';
 
-
-//Verifica auth y redirecciona a la pantalla de inicio
 class AuthWrapper extends StatelessWidget {
   const AuthWrapper({super.key});
 
@@ -19,15 +19,17 @@ class AuthWrapper extends StatelessWidget {
         }
         if (snapshot.hasData) {
           User user = snapshot.data!;
-          print("Usuario: ${user}");
           if (user.emailVerified) {
-            return HomeScreen();
+            Future.microtask(() => Navigator.pushReplacementNamed(context, AppRoutes.home));
           } else {
             return VerifyEmailScreen(user: user);
           }
         } else {
           return const LoginScreen();
         }
+
+        // Devuelve un widget vacío en caso de que no se cumpla ninguna condición
+        return const SizedBox.shrink();
       },
     );
   }
