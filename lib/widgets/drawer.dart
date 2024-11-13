@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../utils/app_routes.dart';
 
+FirebaseAuth _auth = FirebaseAuth.instance;
+
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
@@ -33,7 +35,7 @@ class AppDrawer extends StatelessWidget {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: const Text('Perfil'),
-                    content: const Text('Aquí se mostrará el perfil'),
+                    content: Text('Correo del usuario verificado : ${_auth.currentUser?.emailVerified}'),
                     actions: [
                       TextButton(
                         onPressed: () {

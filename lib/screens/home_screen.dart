@@ -73,42 +73,98 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-            'Centro de Investigacion y Desarrollo Tecnologico (CIDTCA)'),
+        title: const Text('Centro de Investigación CIDTCA'),
+        centerTitle: true,
+        backgroundColor: Colors.green,
       ),
       drawer: const AppDrawer(),
-      body: SizedBox(
-        width: 500.0,
+      body: Container(
+        padding: const EdgeInsets.all(20.0),
+        color: Colors.grey.shade100,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
-                'El Centro de Investigacion y Desarrollo Tecnológico en Ciencias Aplicadas (CIDTCA) está desarrollando una profunda investigacion sobre los últimos avances del proceso de paz en Colombia, enfocándose en los efectos directos e indirectos que este ha tenido sobre el fenómeno del desplazamiento forzoso.'),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 15.0),
+              decoration: BoxDecoration(
+                color: Colors.green.shade50,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Text(
+                'El Centro de Investigación y Desarrollo Tecnológico en Ciencias Aplicadas (CIDTCA) está desarrollando una profunda investigación sobre los últimos avances del proceso de paz en Colombia, enfocándose en los efectos directos e indirectos sobre el desplazamiento forzoso.',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.green,
+                  fontWeight: FontWeight.w500,
+                  height: 1.5,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
             const SizedBox(height: 20.0),
             Center(
               child: Column(
                 children: [
-                  Text('Has visitado esta pagina $_clickCount veces.'),
-                  const SizedBox(height: 5.0),
+                  Text(
+                    'Has visitado esta página $_clickCount veces.',
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 10.0),
                   ElevatedButton(
                     onPressed: _incrementClick,
-                    child: const Text('Click!'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
-                      foregroundColor: Colors.black,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 15.0,
+                        horizontal: 30.0,
                       ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      elevation: 5,
+                    ),
+                    child: const Text(
+                      'Incrementar Conteo',
+                      style: TextStyle(fontSize: 16),
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 20.0),
-            const Text('Informacion clave:'),
-            const SizedBox(height: 20.0),
-            const Text('1. El proceso de paz ha permitido la recontruccion social en áreas afectadas.'),
-            const Text('2. Retos persistentes como la falta de infraestructura en ciertas regiones.'),
-            const Text('3. La plataforma Samay busca educar a los jovenes en zonas de baja conectividad.'),
+            const SizedBox(height: 30.0),
+            const Text(
+              'Información clave:',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.green,
+              ),
+              textAlign: TextAlign.left,
+            ),
+            const SizedBox(height: 10.0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  '• El proceso de paz ha permitido la reconstrucción social en áreas afectadas.',
+                  style: TextStyle(fontSize: 16, height: 1.4),
+                ),
+                SizedBox(height: 5.0),
+                Text(
+                  '• Persisten retos como la falta de infraestructura en ciertas regiones.',
+                  style: TextStyle(fontSize: 16, height: 1.4),
+                ),
+                SizedBox(height: 5.0),
+                Text(
+                  '• La plataforma Samay busca educar a los jóvenes en zonas de baja conectividad.',
+                  style: TextStyle(fontSize: 16, height: 1.4),
+                ),
+              ],
+            ),
           ],
         ),
       ),

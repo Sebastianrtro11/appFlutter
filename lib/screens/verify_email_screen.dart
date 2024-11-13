@@ -1,8 +1,5 @@
-import 'package:app_richard/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../services/auth_service.dart';
-import 'home_screen.dart';
 
 class VerifyEmailScreen extends StatefulWidget {
   final User user;
@@ -13,36 +10,24 @@ class VerifyEmailScreen extends StatefulWidget {
 }
 
 class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
-  bool isEmailVerified = false;
 
   @override
   void initState() {
     super.initState();
     widget.user.sendEmailVerification();
-    checkEmailVerified();
   }
 
   Future<void> checkEmailVerified() async {
-    await widget.user.reload();
-    setState(() {
-      isEmailVerified = widget.user.emailVerified;
-    });
-
-    print("Email verificado: ${widget.user}");
-
-    if (isEmailVerified) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
+    if (widget.user.emailVerified) {
+      Navigator.pushReplacementNamed(context, '/home');
+    }
+    else {
+      Navigator.pushReplacementNamed(context, '/login');
     }
   }
 
   Future<void> _goBack(BuildContext context) async {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const LoginScreen()),
-    );
+    Navigator.pushReplacementNamed(context, '/login');
   }
 
   @override
@@ -50,6 +35,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Verificar Email"),
+        backgroundColor: Colors.green,
         actions: [
           IconButton(
               onPressed: () => _goBack(context),
@@ -60,16 +46,25 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            const SizedBox(height: 40),
             const Text(
               "Un correo de verificación ha sido enviado a tu email. Por favor, verifica tu correo para completar el registro.",
               textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
                 await checkEmailVerified();
               },
-              child: const Text("He verificado mi correo"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: const Text("He verificado mi correo", style: TextStyle(fontSize: 16, color: Colors.white)),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -84,10 +79,16 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Error al enviar el correo")),
                   );
-                  print("Error al enviar el email: ${e}");
                 }
               },
-              child: const Text("Reenviar correo de verificación"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: const Text("Reenviar correo de verificación", style: TextStyle(fontSize: 16, color: Colors.white)),
             ),
           ],
         ),
