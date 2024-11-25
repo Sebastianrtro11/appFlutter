@@ -48,14 +48,14 @@ class _LoginScreenState extends State<LoginScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Error"),
+          title: const Text("Error"),
           content: Text(message),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Cerrar"),
+              child: const Text("Cerrar"),
             ),
           ],
         );
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _signUp() async {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => CreateAccountScreen()),
+      MaterialPageRoute(builder: (context) => const CreateAccountScreen()),
     );
   }
 
@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 20.0),
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Correo electrónico',
                 filled: true,
                 fillColor: Colors.white,
@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
             TextField(
               controller: _passwordController,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Contraseña',
                 filled: true,
                 fillColor: Colors.white,

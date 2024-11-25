@@ -10,7 +10,7 @@ class AppRoutes {
 
   static Map<String, WidgetBuilder> routes = {
     home: (context) => HomeScreen(),
-    carousel: (context) => CarouselScreen(),
-    login: (context) => LoginScreen(),
+    carousel: (context) => const CarouselScreen(),
+    login: (context) => const LoginScreen(),
   };
 }

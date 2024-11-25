@@ -146,9 +146,9 @@ class _HomeScreenState extends State<HomeScreen> {
               textAlign: TextAlign.left,
             ),
             const SizedBox(height: 10.0),
-            Column(
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   '• El proceso de paz ha permitido la reconstrucción social en áreas afectadas.',
                   style: TextStyle(fontSize: 16, height: 1.4),

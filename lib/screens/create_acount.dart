@@ -87,7 +87,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             const SizedBox(height: 20),
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Correo electrónico',
                 filled: true,
                 fillColor: Colors.white,
@@ -97,7 +97,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             TextField(
               controller: _passwordController,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Contraseña',
                 filled: true,
                 fillColor: Colors.white,
@@ -107,7 +107,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             TextField(
               controller: _confirmPasswordController,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Confirmar contraseña',
                 filled: true,
                 fillColor: Colors.white,
